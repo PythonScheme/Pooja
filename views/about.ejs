@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About - Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include('partials/navbar', {page: '/about'}) %>
+
+  <!-- About Hero and Content -->
+  <div class="container mx-auto">
+    <div class="hero bg-base-200 my-8 rounded-xl p-10">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">About</h1>
+          <p class="py-6">Learn more about the developer and the purpose of this site.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10 items-center">
+      <!-- Image -->
+      <img src="https://via.placeholder.com/400x300" alt="Profile or Interest Image" class="rounded-lg shadow-xl">
+
+      <!-- Text Content -->
+      <div>
+        <h2 class="text-3xl font-semibold mb-4">Hello! 👋 I'm Puja</h2>
+        <p class="text-lg">
+          I'm a passionate web development student currently taking courses like WEB322 and OOP244. I enjoy building modern applications, learning about servers, and exploring how technology can fight climate change.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

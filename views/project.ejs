@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<%- include("partials/navbar", { page: "/solutions/projects" }) %>
+
+<!-- Hero Section -->
+<div class="hero min-h-[200px] bg-base-200">
+<div class="hero-content text-center">
+<div class="max-w-md">
+  <h1 class="text-5xl font-bold">Projects</h1>
+  <p class="py-6">Explore climate projects by sector</p>
+  <div class="flex flex-wrap justify-center gap-2 mt-4">
+    <a href="/solutions/projects?sector=Transportation" class="btn btn-sm btn-outline">Transportation</a>
+    <a href="/solutions/projects?sector=Industry" class="btn btn-sm btn-outline">Industry</a>
+    <a href="/solutions/projects?sector=Electricity" class="btn btn-sm btn-outline">Electricity</a>
+    <a href="/solutions/projects?sector=Food" class="btn btn-sm btn-outline">Food</a>
+    <a href="/solutions/projects?sector=Land" class="btn btn-sm btn-outline">Land</a>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- Hero Section -->
+  <div class="hero min-h-[250px] bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl font-bold"><%= project.title %></h1>
+        <p class="py-6">Below, you will find detailed information about the project: <%= project.title %></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+      <!-- Project Image -->
+      <img src="<%= project.feature_img_url %>" alt="Project image" class="w-full lg:w-1/2 rounded-lg shadow-md" />
+
+      <!-- Project Details -->
+      <div class="flex-1 space-y-4">
+        <div>
+          <h2 class="text-xl font-semibold">Introduction</h2>
+          <p><%= project.intro_short %></p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold">Impact</h2>
+          <p><%= project.impact %></p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold">Learn More</h2>
+          <a href="<%= project.original_source_url %>" target="_blank" class="btn btn-sm btn-primary">
+            Original Source
+          </a>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold">Inspiring Quote</h2>
+          <div id="quoteBox" class="italic text-gray-600">Loading quote...</div>
+          <div id="quoteAuthor" class="text-right text-gray-500 text-sm"></div>
+        </div>
+
+        <div>
+          <a href="#" onclick="history.back(); return false;" class="btn btn-sm btn-outline">← Go Back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("https://dummyjson.com/quotes/random")
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("quoteBox").textContent = `"${data.quote}"`;
+          document.getElementById("quoteAuthor").textContent = `— ${data.author}`;
+        })
+        .catch(() => {
+          document.getElementById("quoteBox").textContent = "Couldn't load quote.";
+        });
+    });
+  </script>
+
+</body>
+</html>

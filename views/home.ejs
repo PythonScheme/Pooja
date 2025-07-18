@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include("partials/navbar") %>
+
+  <!-- Hero Section -->
+  <div class="container mx-auto">
+    <div class="hero bg-base-200 my-8 rounded-xl p-10">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold">Explore Climate Solutions</h1>
+          <p class="py-6">Discover real-world projects making a difference for the planet.</p>
+          <a class="btn btn-primary" href="/solutions/projects">Browse Projects</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards Section -->
+    <div id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-10">
+      <!-- Project cards will be inserted here dynamically -->
+    </div>
+  </div>
+
+  <!-- Script to load project data dynamically -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/solutions/projects")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("cards-container");
+
+          data.slice(0, 3).forEach(project => {
+            const card = document.createElement("div");
+            card.className = "card bg-base-100 shadow-xl";
+
+            card.innerHTML = `
+              <figure><img src="${project.feature_img_url}" alt="Project Image"></figure>
+              <div class="card-body">
+                <h2 class="card-title">${project.title}</h2>
+                <p>${project.summary_short}</p>
+                <div class="card-actions justify-end">
+                  <a class="btn btn-outline" href="/solutions/projects/${project.id}">Learn More</a>
+                </div>
+              </div>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(err => {
+          console.error("Failed to load project data:", err);
+          document.getElementById("cards-container").innerHTML = "<p class='text-red-500'>Failed to load project data.</p>";
+        });
+    });
+  </script>
+</body>
+</html>
