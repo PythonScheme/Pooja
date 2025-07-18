@@ -3,6 +3,11 @@ require('dotenv').config();
 require('pg');
 const Sequelize = require('sequelize');
 
+console.log('Testing database connection...');
+console.log('Host:', process.env.PGHOST);
+console.log('Database:', process.env.PGDATABASE);
+console.log('User:', process.env.PGUSER);
+
 // Create sequelize instance
 let sequelize = new Sequelize(
   process.env.PGDATABASE,
@@ -26,15 +31,12 @@ async function testConnection() {
   try {
     await sequelize.authenticate();
     console.log('✅ Database connection successful!');
-    console.log('Connected to:', process.env.PGDATABASE);
-    console.log('Host:', process.env.PGHOST);
-    console.log('User:', process.env.PGUSER);
     
     await sequelize.close();
     console.log('✅ Connection closed successfully');
     
   } catch (error) {
-    console.error('❌ Unable to connect to the database:', error);
+    console.error('❌ Unable to connect to the database:', error.message);
   }
 }
 

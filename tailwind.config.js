@@ -1,10 +1,12 @@
 module.exports = {
-  content: ["./views/home.ejs", "./views/about.ejs", "./views/404.ejs"],
-
+  content: [
+    "./views/**/*.ejs",
+    "./views/partials/*.ejs"
+  ],
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography", require("daisyui"))],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     themes: ["dim"],
   },
