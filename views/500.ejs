@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>500 - Server Error</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include('partials/navbar', {page: ''}) %>
+
+  <!-- 500 Content -->
+  <div class="container mx-auto">
+    <div class="hero bg-base-200 my-16 rounded-xl p-10">
+      <div class="hero-content text-center">
+        <div class="max-w-md">
+          <h1 class="text-5xl font-bold text-red-500">500 - Server Error</h1>
+          <p class="py-6"><%= message || "An internal server error occurred." %></p>
+          <a class="btn btn-primary" href="/">Return Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
